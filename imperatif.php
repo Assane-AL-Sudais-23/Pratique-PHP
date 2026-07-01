@@ -58,7 +58,6 @@
                     if($categories[$i]["code"] === $codeCategorie){
                         echo "code categorie existant \n";
                         $categorieValid = false;
-
                         break;
                     }
                 }
@@ -72,14 +71,50 @@
 
     } while(!$categories);
 
-    var_dump($categories);
 
     // 4 Ajouter un produit a une categorie
         /*
             a - recherche categorie par code
-            b - saisir infons produits si categorie trouve
+            b - saisir infos produits si categorie trouvé
             nb : lors saisie reference unique et obligatoire
         */
+        $codeCategorieRecherche = readline("Entrer le code :");
+        $trouve = false;
+        $index = -1;
+        for($i = 0; $i < count($categories); $i++){
+            if($codeCategorieRecherche === $categories[$i]["code"]){
+                $trouve = true;
+                $index = $i;
+                break;
+            }
+        }
+
+        $validReferent = false;
+        if($trouve){
+
+            $referentProduit = readline("Entrer la reference du produit :");
+
+            for($i = 0; $i < count($categories); $i++){
+                for($j = 0; $j < count($categories[$i]["produits"]); $j++){
+                    if($categories[$i]["produits"][$j]["reference"] === $referentProduit){
+                        $validReferent = true;
+                        echo "reference existant \n";
+                        break;
+                    }
+                }
+            }
+
+            if(!$validReferent){
+                $nomProduit = readline("Entrer le nom :");
+                $quantite = readline("Entrer la quantite :");
+                $prix = readline("Entrer le prix :");
+                $categories[$index]["produits"][] = ["nom" => $nomProduit, "reference" => $referentProduit, "quantite" => $quantite, "prix" => $prix];
+            }
+        }
+
+
+    var_dump($categories);
+        
 
     // 5 - Ajout d'une categorie en lui affectant des produits
         // tant user reponds oui produits sera ajouter
