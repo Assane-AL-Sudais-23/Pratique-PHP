@@ -118,6 +118,50 @@
 
     // 5 - Ajout d'une categorie en lui affectant des produits
         // tant user reponds oui produits sera ajouter
+    do {
+        $validCategorie = true;
+        $nouveauCategorie = readline("Entrer le nom du categorie :");
+        if($nouveauCategorie === ""){
+            $validCategorie = false;;
+        } else {
+            $codeNouveauCategorie =  readline("Entrer le code :");
+            if($codeNouveauCategorie === ""){
+                $validCategorie = false;
+            } else {
+                for($i = 0; $i < count($categories); $i++){
+                    if($categories[$i]["nom"] === $nouveauCategorie) {
+                        echo "nom categorie existant \n";
+                        $validCategorie = false;
+                        break;
+                    }
+
+                    if($categories[$i]["code"] === $codeNouveauCategorie){
+                        echo "code categorie existant \n";
+                        $validCategorie = false;
+                        break;
+                    }
+                }
+
+                if($validCategorie){
+                    $categories[] = ["nom" => $nouveauCategorie, "code" => $codeNouveauCategorie, "produits" => []];
+                    do {
+                        $lenCategorie = count($categories);
+
+                        $categories[$lenCategorie]["produits"][] = [
+                            "nom" => readline("Enrer le nom du produit :"),
+                            "reference" => readline("Enrer la reference du produit :"),
+                            "quantite" => readline("Enrer la quantite du produit :"),
+                            "prix" => readline("Enrer le prix du produit :"),
+                        ];
+                        
+                        $choix =  readline("voulez-vouz ajouter une autre produit :");
+
+                    } while(strtolower($choix) === "oui");
+                }
+            }      
+        }
+
+    } while(!$validCategorie);
 
 
 ?>
