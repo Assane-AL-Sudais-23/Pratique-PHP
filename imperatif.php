@@ -37,6 +37,43 @@
 
     // 3 enrigistrer une nouvelle categorie(code et nom unique et obligatoire, Produit vide);
 
+    do {
+        $categorieValid = true;
+        $nomCategorie = readline("Entrer le nom du categorie :");
+
+        if($nomCategorie === ""){
+            $categorieValid = false;
+        } else {
+            $codeCategorie =  readline("Entrer le code :");
+            if($codeCategorie === ""){
+                $categorieValid = false;
+            } else {
+                for($i = 0; $i < count($categories); $i++){
+                    if($categories[$i]["nom"] === $nomCategorie) {
+                        echo "nom categorie existant \n";
+                        $categorieValid = false;
+                        break;
+                    }
+
+                    if($categories[$i]["code"] === $codeCategorie){
+                        echo "code categorie existant \n";
+                        $categorieValid = false;
+
+                        break;
+                    }
+                }
+
+                if($categorieValid){
+                    $categories[] = ["nom" => $nomCategorie, "code" => $codeCategorie, "produits" => []];
+                }
+            }
+        }
+
+
+    } while(!$categories);
+
+    var_dump($categories);
+
     // 4 Ajouter un produit a une categorie
         /*
             a - recherche categorie par code
