@@ -2,7 +2,7 @@
     // 1 Initialiser un tableau de categorie
     $categories = [];
     
-    $categories[] = [
+    $categories = [
         0 => [
             "nom" => "categorieA",
             "code" => "1212",
@@ -25,10 +25,15 @@
             "code" => "3434",
             "produits" => []
         ]
-    ]
+    ];
 
     // 2 Afficher les categorie sans produits
 
+    for($i = 0; $i < count($categories); $i++){
+        if(count($categories[$i]["produits"]) === 0){
+            print_r($categories[$i]);
+        }
+    }
 
     // 3 enrigistrer une nouvelle categorie(code et nom unique et obligatoire, Produit vide);
 
