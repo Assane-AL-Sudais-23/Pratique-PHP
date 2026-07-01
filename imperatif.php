@@ -19,10 +19,16 @@
                 0 => ["nom" => "Pain", "reference" => "00127", "quantite" => "10", "prix" => "150"],
                 1 => ["nom" => "Riz", "reference" => "00130", "quantite" => "6", "prix" => "450"]
             ]
+        ],
+        2 => [
+            "nom" => "categorieC",
+            "code" => "3434",
+            "produits" => []
         ]
     ]
 
     // 2 Afficher les categorie sans produits
+
 
     // 3 enrigistrer une nouvelle categorie(code et nom unique et obligatoire, Produit vide);
 
